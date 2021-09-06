@@ -33,14 +33,10 @@ class Category(models.Model):
 		return url
 	def __str__(self):
 		return self.category_name
-choices = Category.objects.all().values_list('category_name', 'category_name')
-choice_list = []
 
-for item in choices:
-	choice_list.append(item)
 class Post(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	category = models.CharField(max_length=70, choices=choice_list)
+	category = models.CharField(max_length=70)
 	title = models.CharField(max_length=100)
 	date = models.DateTimeField(auto_now_add=True)
 	image = models.ImageField()
